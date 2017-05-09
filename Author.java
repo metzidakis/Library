@@ -9,6 +9,7 @@ class Author {
 
 	//Instance variables
 	private String name;
+	
 
 	//constructor
 	Author(String name) {

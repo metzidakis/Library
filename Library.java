@@ -1,4 +1,4 @@
-class Library {
+public class Library {
 
 	/*
 	Class Library
@@ -10,72 +10,70 @@ class Library {
     */
 
 	//Instance variables
-	private Book[] books;
+	private BookList bookList;
+	private TransactionHistory transactionHistory;
+
 
 	//constructor
-	Library ( Book[] books) {
-		this.books = books;
+	Library ( BookList booklist) {
+		this.bookList = booklist;
 	}
 
 	//Prints all books that have at least one available physical copy.
 	public void printAvailableBooks() {
-		int a = 0;
-		System.out.println("Books available for renting:");
-		for(int i = 0; i < books.length; i++){
-			if ( books[i].isAvailable() == true ) {
-			    a++ ;
-				System.out.println( a +". " + books[i].toString());
-			}
-		}
+		bookList.printAllAvailableBooks();
 	}
 
-	//Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed
+	//Searches for a book based on a given title. If the book exists then its details should be printed,
+	//otherwise an error message should be displayed
 	public void printBookDetails( String proxy ) {
-		boolean b = false;
-		int a=0;
-		for(int i = 0; i < books.length; i++) {
-			if ( books[i].getName().equals (proxy) ) {
-				a = i;
-				b = true;
-			}
-		}
-			if ( b == true) {
-				System.out.println("Book Details: " + books[a].toString());
-			}else {
-				System.out.println( " We are sorry but we couldn't find " + proxy + ".");
-			}
+		bookList.printBookDetails (proxy);
 	}
 
 	//Prints only the books that have an author that matches a given name
-	public void printBooksFromAuthor( String proxy) {
-		System.out.println(" Books from author " + proxy + ":");
-		boolean b = false;
-		for(int i = 0; i < books.length; i++) {
-			if ( books[i].hasAuthor( proxy ) ) {
-				System.out.println( books[i].toString() );
-				b = true;
-			}
-		}
-		if ( b == false ) {
-			System.out.println( "None" );
-		}
-
-
+	public void printBooksFromAuthor( String authorName) {
+		bookList.printBooksFromAuthor(authorName);
 	}
 
 	//Prints the book with the highest number of the timesRented field.
 	public void printTheMostPopularBook() {
-		int a = books[0].getTimesRented();
-		int b = 0;
-		for(int i = 1; i < books.length; i++) {
-			if ( books[i].getTimesRented() > a ) {
-				a = books[i].getTimesRented();
-				b = i;
-			}
-
-		}
-		System.out.println("Most rented book until now is " + books[b].getName());
+		bookList.printTheMostPopularBook();
 	}
+	
+	//remove book if it exists
+	public void removeBook( String bookName) {
+		bookList.removeBook(bookList.BookWithTitleIs(bookName));
+	}
+	
+	//method for adding book if it does not exist
+	public void addBook( Book book ) {
+		bookList.addBook(book);
+	}
+	
+	//Searches for a book based on a given title. Returning the book
+	public Book bookWithTitleIs(String bookName) {
+		return bookList.BookWithTitleIs(bookName);
+	}
+	
+	//Checks if there is at least one available physical copy of the book
+	public boolean isAvailable(String bookName) {
+		return bookList.isAvailable(bookName);
+	}
+	
+	//rent physical copy of  book if it exists and if there are physical copies
+	public void rentPhysicalCopy(String bookName) {
+		bookList.rentPhysicalCopy(bookName);
+	}
+	
+	//method for printing all pending transactions
+	public void printPendingTransactions() {
+		System.out.println("-----------------------------------Transaction History-----------------------------------");
+		for ( int i = 0; i < TransactionHistory.transactionHistory.size(); i++ ) {
+			System.out.println(TransactionHistory.transactionHistory.get(i).toString());
+		}
+	}
+	
+
 
 
 }

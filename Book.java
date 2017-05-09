@@ -1,3 +1,4 @@
+
 class Book {
 
 	/*                      Exercise 3 (continued)
@@ -21,16 +22,16 @@ class Book {
 
 	//Instance variables
 	private String name;
-	private Author author;
+	private AuthorList bookAuthors;
 	private final String isbn;
 	private int physicalCopies;
 	private int availableCopies;
 	private int timesRented;
 
 	//Constructor
-	Book ( String name, Author author, String isbn, int physicalCopies, int availableCopies, int timesRented ) {
+	Book ( String name, Author[] authors, String isbn, int physicalCopies, int availableCopies, int timesRented ) {
 		this.name = name;
-		this.author = author;
+		this.bookAuthors = new AuthorList(authors) ;
 		this.isbn = isbn;
 		this.physicalCopies = physicalCopies;
 		this.availableCopies = availableCopies;
@@ -39,7 +40,7 @@ class Book {
 
 	//getters
 	public String getName() { return name; }
-	public Author getAuthor() { return author; }
+	public AuthorList getBookAuthors() { return bookAuthors; }
 	public String getIsbn() { return isbn; }
 	public int getPhysicalCopies() { return physicalCopies; }
 	public int getAvailableCopies() { return availableCopies; }
@@ -47,21 +48,26 @@ class Book {
 
 	//setters
 	public void  setName( String name ) { this.name = name; }
-	public void  setAuthor( Author author ) { this.author = author; }
+	public void  setAuthor( AuthorList bookAuthors ) { this.bookAuthors = bookAuthors; }
 	public void  setPhysicalCopies( int physicalCopies ) { this.physicalCopies = physicalCopies; }
 	public void  setAvailableCopies( int availableCopies ) { this.availableCopies = availableCopies; }
 	public void  setTimesRented( int timesRented ) { this.timesRented = timesRented; }
+	
+	//method to add Author to Book
+	public void addAuthorToBook(String authorName) {
+		bookAuthors.addAuthor(authorName);
+	}
 
 	//Returns the details of the book including the Author details. The Authors' details should be acquired by the proper toString method.
-	public String toString() { return "Name: " + name + ", Author: " + author.toString() + ", ISBN :" + isbn + ", Physical Copies: " + physicalCopies + ", Available Copies: " + availableCopies + ", Times Rented: " + timesRented; }
+	public String toString() { return "Name: " + name + ", Author: " + bookAuthors.toString() + "ISBN :" + isbn + ", Physical Copies: " + physicalCopies + ", Available Copies: " + availableCopies + ", Times Rented: " + timesRented; }
 
 	//Checks if there is an available copy for renting. If yes, then it prints a message of success and reduces the number of available copies by one as like the user rented the copy,
 	//and increases the times rented counter by 1
 	public void rentPhysicalCopy() {
 		if ( this.availableCopies > 0 ) {
-			System.out.println( "There are " + this.availableCopies + " copies of " + this.name + " out of a total " + this.physicalCopies + " available for renting");
-			this.availableCopies = ( this.availableCopies - 1 );
-			this.timesRented = ( this.timesRented + 1 );
+			System.out.println( "There are " + availableCopies + " copies of " + name + " out of a total " + physicalCopies + " available for renting");
+			availableCopies = ( availableCopies - 1 );
+			timesRented = ( timesRented + 1 );
 		}else {
 			System.out.println( "There are no available books for renting");
 		}
@@ -69,16 +75,14 @@ class Book {
 
 	//Checks if there is at least one available physical copy of the book
 	public boolean isAvailable() {
-		boolean a = ( this.availableCopies > 0 );
-		return a;
+		return ( availableCopies > 0 );
 	}
 
 
 	//Checks if a given name is the name of this book's author
-	public boolean hasAuthor( String proxy ) {
-		Author proxy1 = this.author;
-	    boolean a = ( proxy1.toString().equals( proxy ) );
-		return a;
+	public boolean hasAuthor( String authorname ) {
+		Author author = new Author(authorname);
+		return bookAuthors.checkIfAuthorExists( author );
 	}
 
 
