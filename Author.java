@@ -1,12 +1,6 @@
 class Author {
 
-	/*                   Exercise 3 (continued)
-		Class Author
-		Fields: name, of type String
-		Methods: toString, return type String, returns the name of the author
-	*/
-
-
+	
 	//Instance variables
 	private String name;
 	
@@ -16,7 +10,7 @@ class Author {
 		this.name = name;
 	}
 
-	//getter
+	//toString return String name of author
 	public String toString() { return name; }
 
 

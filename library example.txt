@@ -1,0 +1,138 @@
+1
+You have the following relations between entities:
+•	There is a Library that has a collection (single dimension array) of Books
+•	Each Book has an Author
+•	The Library is operated by a Librarian
+•	The user can make requests regarding authors' and book availability only by asking the Librarian
+•	For all of the following classes, additional to the requirements described in the slides, create the getter and setter methods (only where is needed) for interacting with their instance variables and any necessary constructors
+2
+•	Class Author
+•	Fields:
+•	name, of type String
+•	Methods:
+•	toString, return type String, returns the name of the author
+3
+•	Class Book
+•	Fields:
+•	title, type String,
+•	author, type Author,
+•	isbn, type String,
+•	physicalCopies, type int,
+•	availableCopies, type int, and
+•	timesRented, type int
+•	Important :
+•	isbn cannot change after the initialization
+4
+•	Class Book
+•	Methods:
+•	toString, return type String. Returns the details of the book including the Author details. The Authors' details should be acquired by the proper toString method
+•	rentPhysicalCopy, type void. Checks if there is an available copy for renting. If yes, then it prints a message of success. What fields should be modified upon a successful rental?
+•	isAvailable, return type boolean. Checks if there is at least one available physical copy of the book, and
+•	hasAuthor, return type boolean. Checks if a given name is the name of this book's author
+•	
+5
+•	Class Library
+•	Fields:
+•	books, type Book[] (array of Books)
+•	Methods:
+•	printAvailableBooks, type void. Prints books that have at least one available physical copy. Hint: Use the isAvailable and the toString methods from the Book class
+•	printBookDetails (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
+6
+•	Class Library
+•	Methods:
+•	printBooksFromAuthor, type void. Prints only the books that have an author that matches a given name
+•	printTheMostPopularBook, type void. Prints the book with the highest number of the timesRented field.
+7
+•	Class Librarian
+•	Fields:
+•	library, type Library. The library that he manages.
+•	Methods:
+•	findMeBooksFromAuthor, type void. Receives an author name and delegates the request to the library's printBooksFromAuthor method
+•	findMeAvailableBooks, type void. Delegates the request to the library's printAvailableBooks method
+•	findMeBook, type void. Receives a book's title and delegates the request to the library's printBookDetails method
+•	findMostPopularBook, type void. Delegates the request to the library's printTheMostPopularBook method
+8
+•	Create a command-line user interface for Exercise 3, providing the user, at least, the following options:
+Welcome to the Bootcamp library.
+How do you want to proceed?
+1. Show all available books
+2. Search for a book (by book title)
+3. Display books from a specific author
+4. Show me the most popular book
+q. Quit
+
+
+New
+
+9
+•	The goal of this Exercise is to modify the code of our Library project, so that more Authors and Books can be added dynamically during runtime! Also, to provide additional functionality (like add/remove books, store transactions, etc)
+10
+•	Create a class named AuthorList that represents a List that stores Author objects.
+•	Aí instance variable of type AuthorList should be included in your Book class. From now on, each book can have more than one authors.
+•	The AuthorList can be implemented internally (wrap inside) by using the ArrayList data structure, provided by the Java Collections Framework.
+11
+•	AuthorList should implement methods that provide at least the following functionality:
+•	a Constructor that can initialize and populate the List from a given array of authors (AuthorList(Author authorsArray[]){...}),
+•	add an author, (only if he doesn't already exists,
+•	check if author exists,
+•	a toString method that returns a String with all names,
+•	and (optionally) any other method of your preference!
+12
+•	Create a class BookList that represents a List data structure that stores Book objects
+•	An instance variable of type BookList should be included in your Library class also (replace the Book[] array from the previous implementation, if exists).
+•	The BookList can be implemented internally (wrap inside) by using the LinkedList data structure, provided by the Java Collections Framework.
+•	Modify any code necessary in Library in order to delegate operation to the BookLists functionalities when needed
+13
+•	BookList should offer the following functionalities:
+•	exists(String title) - returns true or false if the book exists in the list
+•	add book(Book newBook) - adds a new book at the end of the list (only if the book doesn't exist)
+•	remove book - removes a book with a given title, if exists
+•	And also provide the following methods (previously Library's responsibilities)
+•	printAvailableBooks
+•	printBookDetails
+•	printBooksFromAuthor
+•	printTheMostPopularBook
+14
+•	Create a class named Transaction that stores information related to the "renting a book", operation.
+•	Your class should have keep the following information
+•	The book for which the transaction is being performed
+•	The date of requesting the current transaction
+•	The date of serving of the current transaction
+•	A counter that stores how many Transactions have been made
+•	A unique identifier (that cannot be changed after initialization) for each Transaction created
+•	It should provide an overloaded Constructor and a setServedDate() method that updates the relevant instance variable
+15
+•	Create a TransactionQueue class that serves as a Queue data structure for storing Transactions that are pending to be executed. The TransactionQueue should be implemented by a data-structure of your preference (simple arrays, ArrayList, Linked-list) but should provide only the methods of a Queue
+•	An instance variable of type TransactionQueue should be introduced in your Librarian class since a librarian is responsible for serving the requests
+•	Every time that a book is requested, a Transaction should be created and stored in the Queue.
+16
+•	Create a TransactionHistory class that represents a List data structure that stores executed Transactions.
+•	A field of type TransactionHistory should be introduced in your Library class
+•	Create a method executePendingTransactions() in your Librarian class. When this method is called by the Librarian it should execute one by one all stored pending transactions and print an indicative message for each executed transaction.
+•	Every executed Transaction should be removed from the pending transactions list and moved in the transaction history list of the Library class.
+•	Add a method that prints all pending transactions in the Librarian class and all a method that prints the transaction history in the Library
+17
+•	Give the Librarian the ability to perform the rentPhysicalCopy functionality. The librarian should retrieve the book (through the Library), create the necessary transaction and store it to his pending queue.
+•	Extend the command-line User Interface to include all newly added functionalities! (add book, remove book, execute transactions)
+•	
+18
+•	Extend the functionality of Exercise 3 by adding the functionality of returning a book and 4 more entities: The UserList, the User, the ReturnBook and RentBook.
+•	Specifically, create a class User that represents a user who can perform a transaction with the library. Users should have the following instance variables:
+•	name
+•	id - final and unique for each user
+•	transactions - a TransactionsHistory that stores all Transactions related to the current user
+•	next - a reference to the next user, a feature that makes the User class an element in a LinkedList
+19
+•	Create a class UserList, which stores User objects
+•	UserList should behave as a linked-list with elements of type User. (It should hold only the "head" of the list)
+•	UserList should offer the following functionalities:
+•	search for a user
+•	add a user (if he doesn't exist)
+•	remove a user
+•	print all users
+20
+•	Add a user (of type User) instance variable in class Transaction. Every transaction should now store also the user that interacted with the library
+•	Create 2 classes named RentBook and ReturnBook respectively, who will extend the functionality of class Transaction
+•	Each class should overwrite the toString method and print an appropriate message when renting or returning a book
+•	Add in the command line graphical UI the option to "return a book". From now on, when renting or returning the book you should ask for the users' name and perform the transaction only if he/she exists.
+

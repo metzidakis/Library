@@ -1,23 +1,7 @@
 class Librarian {
 
-	/*                  Class Librarian
-		Fields:
-		library, type Library. The library that he manages.
-		Methods:
-		findMeBooksFromAuthor, type void. Receives an author name and delegates the request to the library's printBooksFromAuthor method
-		findMeAvailableBooks, type void. Delegates the request to the library's printAvailableBooks method
-		findMeBook, type void. Receives a book's title and delegates the request to the library's printBookDetails method
-		findMostPopularBook, type void. Delegates the request to the library's printTheMostPopularBook method
-		
-					Exercise 3 (continued)
-		Give the Librarian the ability to perform the rentPhysicalCopy functionality. 
-		The librarian should retrieve the book (through the Library), create the necessary transaction and store it to his pendiong queue.
-		Extend the command-line User Interface to include all newly added functionalities! (add book, remove book, execute transactions)
-
-	*/
-
 	//Instance variables
-	Library library;
+	private Library library;
 	TransactionQueue transactionQueue;
 
 

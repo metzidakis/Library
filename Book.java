@@ -1,25 +1,6 @@
 
 class Book {
 
-	/*                      Exercise 3 (continued)
-		Class Book
-		Fields:
-		title, type String,
-		author, type Author,
-		isbn, type String,
-		physicalCopies, type int,
-		availableCopies, type int, and
-		timesRented, type int
-		Important :
-	    isbn cannot change after the initialization
-
-		Methods:
-		toString, return type String. Returns the details of the book including the Author details. The Authors' details should be acquired by the proper toString method.
-		rentPhysicalCopy, type void. Checks if there is an available copy for renting. If yes, then it prints a message of success. What fields should be modified upon a successful rental?
-		isAvailable, return type boolean. Checks if there is at least one available physical copy of the book, and
-	    hasAuthor, return type boolean. Checks if a given name is the name of this book's author
-	*/
-
 	//Instance variables
 	private String name;
 	private AuthorList bookAuthors;
@@ -64,10 +45,10 @@ class Book {
 	//Checks if there is an available copy for renting. If yes, then it prints a message of success and reduces the number of available copies by one as like the user rented the copy,
 	//and increases the times rented counter by 1
 	public void rentPhysicalCopy() {
-		if ( this.availableCopies > 0 ) {
-			System.out.println( "There are " + availableCopies + " copies of " + name + " out of a total " + physicalCopies + " available for renting");
-			availableCopies = ( availableCopies - 1 );
-			timesRented = ( timesRented + 1 );
+		if ( isAvailable() == true ) {
+			availableCopies--;
+			timesRented++;
+			System.out.println( "Book succesfully rented");
 		}else {
 			System.out.println( "There are no available books for renting");
 		}

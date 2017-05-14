@@ -93,7 +93,7 @@ class Interface{
 
 			switch ( b ) {
 				case "1" : theGuyWhoKnowsAlot.findMeAvailableBooks();
-				           System.out.println( "press any button to return to menu or q to quit" );
+				           System.out.println( "press any button to return to menu" );
 				           Scanner input4 = new Scanner(System.in);
                            e = input4.nextLine();
                            break;
@@ -101,7 +101,7 @@ class Interface{
 				           System.out.println( "Enter the name of the book you are searching: " );
                            String proxy = input1.nextLine();
 				           theGuyWhoKnowsAlot.findMeBook(proxy);
-				           System.out.println( "press any button to return to menu or q to quit" );
+				           System.out.println( "press any button to return to menu" );
 				           Scanner input5 = new Scanner(System.in);
                            e = input5.nextLine();
                            break;
@@ -109,12 +109,12 @@ class Interface{
 				           Scanner input2 = new Scanner(System.in);
                            String d = input2.nextLine();
 				           theGuyWhoKnowsAlot.findMeBooksFromAuthor(d);
-				           System.out.println( "press any button to return to menu or q to quit" );
+				           System.out.println( "press any button to return to menu" );
 				           Scanner input6 = new Scanner(System.in);
                            e = input6.nextLine();
                            break;
 				case "4" : theGuyWhoKnowsAlot.findMostPopularBook();
-				           System.out.println( "press any button to return to menu or q to quit" );
+				           System.out.println( "press any button to return to menu" );
 				           Scanner input7 = new Scanner(System.in);
                            e = input7.nextLine();
                            break;
@@ -144,7 +144,7 @@ class Interface{
 			               Book book = new Book (j,authors,g,h,i,0);
 			               System.out.println( "Book Added " );
 						   theGuyWhoKnowsAlot.addBook(book);
-						   System.out.println( "press any button to return to menu or q to quit" );
+						   System.out.println( "press any button to return to menu" );
 				           Scanner input14 = new Scanner(System.in);
                            e = input14.nextLine();
 						   break;
@@ -160,7 +160,7 @@ class Interface{
 				           Scanner input16 = new Scanner(System.in);
 		                   String l = input16.nextLine();
 						   theGuyWhoKnowsAlot.rentPhysicalCopy(l);
-						   System.out.println( "press any button to return to menu or q to quit" );
+						   System.out.println( "press any button to return to menu" );
 				           Scanner input17 = new Scanner(System.in);
                            e = input17.nextLine();
                            break;

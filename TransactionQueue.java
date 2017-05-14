@@ -1,25 +1,13 @@
 import java.util.ArrayList;
 
 public class TransactionQueue  {
-
-	
-	
-	/*
-	    				      Exercise 3 (continued)
-		Create a TransactionQueue class that serves as a Queue data structure for storing Transactions that are pending to be executed. 
-		The TransactionQueue should be implemented by a data-structure of your preference (simple arrays, ArrayList, Linked-list) 
-		but should provide only the methods of a Queue
-		An instance variable of type TransactionQueue should be introduced in your Librarian class 
-		since a librarian is responsible for serving the requests
-		Every time that a book is requested, a Transaction should be created and stored in the Queue.
-	 */
 	
 	//variable
-	ArrayList <Transaction> transactionQueue;
+	private ArrayList <Transaction> transactionQueue;
 	
 	//Constructor
 	TransactionQueue () {
-		this.transactionQueue = new ArrayList<>();
+		this.transactionQueue = new ArrayList <> ();
 	}
 	
 	//method for getting the size

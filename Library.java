@@ -1,14 +1,5 @@
 public class Library {
 
-	/*
-	Class Library
-	Methods:
-	printAvailableBooks, type void. Prints books that have at least one available physical copy. Hint: Use the isAvailable and the toString methods from the Book class
-    printBookDetails (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
-    printBooksFromAuthor, type void. Prints only the books that have an author that matches a given name
-    printTheMostPopularBook, type void. Prints the book with the highest number of the timesRented field.
-    */
-
 	//Instance variables
 	private BookList bookList;
 	private TransactionHistory transactionHistory;
